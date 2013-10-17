@@ -1,11 +1,11 @@
 #!/bin/bash
 
-VERSION="1.0.1c"
+VERSION="1.0.1e"
 LIBNAME="libssl"
 LIBDOWNLOAD="http://www.openssl.org/source/openssl-${VERSION}.tar.gz"
 ARCHIVE="${LIBNAME}-${VERSION}.tar.gz"
 
-SDK="5.1"
+SDK="7.0"
 CONFIGURE_FLAGS=""
 
 DIR=`pwd`
@@ -60,12 +60,8 @@ do
 
     DEVROOT="${XCODE}/Platforms/${PLATFORM}.platform/Developer"
     SDKROOT="${DEVROOT}/SDKs/${PLATFORM}${SDK}.sdk"
-    export CC="${DEVROOT}/usr/bin/llvm-gcc-4.2 -arch ${ARCH} -isysroot ${SDKROOT}"
-    export LD="${DEVROOT}/usr/bin/ld -arch ${ARCH} -isysroot ${SDKROOT}"
-    export AR="${DEVROOT}/usr/bin/ar"
-    export AS="${DEVROOT}/usr/bin/as"
-    export NM="${DEVROOT}/usr/bin/nm"
-    export RANLIB="${DEVROOT}/usr/bin/ranlib"
+    export CC="${XCODE}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch ${ARCH} -isysroot ${SDKROOT} -miphoneos-version-min=6.0"
+    export LDFLAGS="-arch ${ARCH} -isysroot ${SDKROOT}"
 
     ./configure BSD-generic32 no-shared ${CONFIGURE_FLAGS} \
                 --openssldir="${DIR}/bin/${LIBNAME}-${VERSION}/${PLATFORM}${SDK}-${ARCH}"

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-VERSION="7.26.0"
-PRECEDENT_VERSION="1.0.1c"
+VERSION="7.32.0"
+PRECEDENT_VERSION="1.0.1e"
 PRECEDENT_LIBNAME="libssl"
 LIBNAME="libcurl"
 LIBDOWNLOAD="http://curl.haxx.se/download/curl-${VERSION}.tar.gz"
 ARCHIVE="${LIBNAME}-${VERSION}.tar.gz"
 
-SDK="5.1"
+SDK="7.0"
 
 # Enabled/disabled protocols (the fewer, the smaller the final binary size)
 PROTOCOLS="--enable-http --disable-rtsp --disable-ftp --disable-file --disable-ldap --disable-ldaps \
@@ -74,14 +74,7 @@ do
 
     DEVROOT="${XCODE}/Platforms/${PLATFORM}.platform/Developer"
     SDKROOT="${DEVROOT}/SDKs/${PLATFORM}${SDK}.sdk"
-    export CC="${DEVROOT}/usr/bin/llvm-gcc-4.2"
-    export LD="${DEVROOT}/usr/bin/ld"
-    export CPP="${DEVROOT}/usr/bin/llvm-cpp-4.2"
-    export CXX="${DEVROOT}/usr/bin/llvm-g++-4.2"
-    export AR="${DEVROOT}/usr/bin/ar"
-    export AS="${DEVROOT}/usr/bin/as"
-    export NM="${DEVROOT}/usr/bin/nm"
-    export RANLIB="${DEVROOT}/usr/bin/ranlib"
+    export CC="${XCODE}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch ${ARCH} -isysroot ${SDKROOT} -miphoneos-version-min=6.0"
     export LDFLAGS="-arch ${ARCH} -pipe -no-cpp-precomp -isysroot ${SDKROOT} -L${DIR}/lib"
     export CFLAGS="-arch ${ARCH} -pipe -no-cpp-precomp -isysroot ${SDKROOT} -I${DIR}/include"
     export CXXFLAGS="-arch ${ARCH} -pipe -no-cpp-precomp -isysroot ${SDKROOT} -I${DIR}/include"
