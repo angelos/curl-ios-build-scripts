@@ -86,6 +86,8 @@ When you're about to build the final release (to submit to the app store), you s
 
 ## Acknowledgments
 
+This fork is based on the work by [Bruno de Carvalho](https://github.com/brunodecarvalho) on [Curl build utility for iOS and OSX](https://github.com/brunodecarvalho/curl-ios-build-scripts). It is kept alive since it uses OpenSSL, and the its [master](https://github.com/brunodecarvalho/curl-ios-build-scripts/tree/master) has moved on to DarwinSSL.
+
 These scripts are based on the excellent work of [Felix Schulze (x2on)](https://github.com/x2on), with some help from [Bob](http://stackoverflow.com/questions/9039554/using-libcurl-on-ios-5-as-an-alternative-to-nsurlconnection/9528936#9528936).
 
 Also huge thanks to [Jonas Schnelli](https://github.com/jonasschnelli) for the pull request that included native Darwin SSL support.
